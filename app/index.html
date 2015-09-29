@@ -24,11 +24,12 @@
     <script src="components/version/interpolate-filter.js"></script>
     -->
 </head>
-<body>
+<body data-ng-controller="todoController">
 
 <h1>TodoApp</h1>
 
-<h2>My TodoList</h2>
+<h2 ng-bind="title"></h2>
+<!-- Other way of binding data from scope: <h2>{{title}}</h2> -->
 
 <input type="text" />
 <button>Add</button>
