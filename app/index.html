@@ -51,10 +51,12 @@
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="todo in data">
+        <tr ng-repeat="todo in data | filter: {'done': false} | orderBy: 'description'"><!-- for descending add a '-' before description -->
             <td ng-bind="todo.description"></td>
+            <!--
             <td ng-if="todo.done">Yes</td>
             <td ng-if="!todo.done">No</td>
+            -->
             <td><input type="checkbox" ng-model="todo.done" /></td>
         </tr>
     </tbody>
