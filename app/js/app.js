@@ -2,34 +2,21 @@
 
 var todoModule = angular.module('todoApp', []);
 
-todoModule.controller('todoController', function($scope){
+todoModule.controller('todoController', function($scope, $http){
     $scope.title = "Yoshi's todo list";
 
-    var model =
-        [
-            {
-                description: 'Learn Javascript',
-                done: true
-            },
-            {
-                description: 'Learn angular',
-                done: false
-            },
-            {
-                description: 'Buy flowers',
-                done: false
-            },
-            {
-                description: 'Go shopping',
-                done: false
-            }
-        ];
+    var todoItemModel;
 
-    $scope.data = model;
+    $http.get('model/data.json').success(function(data){
+        $scope.data = data;
+    });
+
+    //$scope.data = todoItemModel;
+
     $scope.incomplete = function() {
         var numberOfIncompleteTodos = 0;
 
-        angular.forEach(model, function(item){
+        angular.forEach(todoItemModel, function(item){
            if(!item.done)
            {
                numberOfIncompleteTodos++;
@@ -37,10 +24,10 @@ todoModule.controller('todoController', function($scope){
         });
 
         return numberOfIncompleteTodos;
-    }
+    };
 
     $scope.addTodo = function() {
         var newTodo = { description: $scope.inputText, done: false};
-        model.push(newTodo);
-    }
+        todoItemModel.push(newTodo);
+    };
 });
