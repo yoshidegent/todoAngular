@@ -26,4 +26,21 @@ todoModule.controller('todoController', function($scope){
         ];
 
     $scope.data = model;
+    $scope.incomplete = function() {
+        var numberOfIncompleteTodos = 0;
+
+        angular.forEach(model, function(item){
+           if(!item.done)
+           {
+               numberOfIncompleteTodos++;
+           }
+        });
+
+        return numberOfIncompleteTodos;
+    }
+
+    $scope.addTodo = function() {
+        var newTodo = { description: $scope.inputText, done: false};
+        model.push(newTodo);
+    }
 });

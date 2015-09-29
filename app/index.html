@@ -23,6 +23,12 @@
     <script src="components/version/version-directive.js"></script>
     <script src="components/version/interpolate-filter.js"></script>
     -->
+
+    <style>
+        h3 span.toomany {
+            color: red;
+        }
+    </style>
 </head>
 <body data-ng-controller="todoController">
 
@@ -32,8 +38,10 @@
 <!-- Other way of binding data from scope: -->
 <!-- <h2>{{title}}</h2> -->
 
-<input type="text" />
-<button>Add</button>
+<h3 ng-hide="incomplete() === 0">Incomplete items: <span ng-bind="incomplete()" ng-class="{ toomany: incomplete() > 1}"></span></h3>
+
+<input type="text" ng-model="inputText" />
+<button ng-click="addTodo()">Add</button>
 
 <table>
     <thead>
@@ -47,6 +55,7 @@
             <td ng-bind="todo.description"></td>
             <td ng-if="todo.done">Yes</td>
             <td ng-if="!todo.done">No</td>
+            <td><input type="checkbox" ng-model="todo.done" /></td>
         </tr>
     </tbody>
 </table>
