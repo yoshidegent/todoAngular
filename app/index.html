@@ -29,7 +29,8 @@
 <h1>TodoApp</h1>
 
 <h2 ng-bind="title"></h2>
-<!-- Other way of binding data from scope: <h2>{{title}}</h2> -->
+<!-- Other way of binding data from scope: -->
+<!-- <h2>{{title}}</h2> -->
 
 <input type="text" />
 <button>Add</button>
@@ -42,13 +43,10 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>Learn Javascript</td>
-            <td>Yes</td>
-        </tr>
-        <tr>
-            <td>Learn Angular</td>
-            <td>No</td>
+        <tr ng-repeat="todo in data">
+            <td ng-bind="todo.description"></td>
+            <td ng-if="todo.done">Yes</td>
+            <td ng-if="!todo.done">No</td>
         </tr>
     </tbody>
 </table>
